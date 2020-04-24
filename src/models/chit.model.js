@@ -11,6 +11,7 @@ const chitSchema = mongoose.Schema({
     chitType: { type: String, required: true },
     membersSize: { type: Number, required: true },
     members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    instalments: [{ type: Schema.Types.ObjectId, ref: 'Instalment' }],
     createdBy: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 module.exports = mongoose.model('Chit', chitSchema);

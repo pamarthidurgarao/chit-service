@@ -10,13 +10,19 @@
         }
     },
     "host": "localhost:3000",
-    "basePath": "",
+    "basePath": "/chit/api/v1",
     "tags": [{
         "name": "User",
         "description": "API for users in the system"
     }, {
         "name": "Chit",
         "description": "API for chit in the system"
+    }, {
+        "name": "Instalment",
+        "description": "API for Installments of chits"
+    }, {
+        "name": "ChitRequest",
+        "description": "API for chit request to users"
     }],
     "schemes": [
         "http"
@@ -127,6 +133,324 @@
                     }
                 }
             }
+        },
+        "/chit": {
+            "post": {
+                "tags": [
+                    "Chit"
+                ],
+                "description": "Create new chit in system",
+                "parameters": [{
+                    "name": "chit",
+                    "in": "body",
+                    "description": "Chit that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/Chit"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New chit is created",
+                        "schema": {
+                            "$ref": "#/definitions/Chit"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Chit"
+                ],
+                "description": "Create new chit in system",
+                "parameters": [{
+                    "name": "chit",
+                    "in": "body",
+                    "description": "Chit that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/Chit"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New chit is created",
+                        "schema": {
+                            "$ref": "#/definitions/Chit"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Chit"
+                ],
+                "summary": "Get all chits in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Chit"
+                        }
+                    }
+                }
+            }
+        },
+        "/chit/query": {
+            "post": {
+                "tags": [
+                    "Chit"
+                ],
+                "description": "Create new user in system",
+                "parameters": [{
+                    "name": "user",
+                    "in": "body",
+                    "description": "User that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/Query"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user is created",
+                        "schema": {
+                            "$ref": "#/definitions/Chit"
+                        }
+                    }
+                }
+            }
+        },
+        "/chit/{id}": {
+            "get": {
+                "tags": [
+                    "Chit"
+                ],
+                "summary": "Get all chits in system",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of user that we want to find",
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Chit"
+                        }
+                    }
+                }
+            }
+        },
+        "/chit/user/{userId}": {
+            "get": {
+                "tags": [
+                    "Chit"
+                ],
+                "summary": "Get all chits in system",
+                "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of user that we want to find",
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Chit"
+                        }
+                    }
+                }
+            }
+        },
+        "/instalment": {
+            "post": {
+                "tags": [
+                    "Instalment"
+                ],
+                "description": "Create new instalment in system",
+                "parameters": [{
+                    "name": "instalment",
+                    "in": "body",
+                    "description": "Chit that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/Instalment"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New instalment is created",
+                        "schema": {
+                            "$ref": "#/definitions/Instalment"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Instalment"
+                ],
+                "description": "Create new instalment in system",
+                "parameters": [{
+                    "name": "instalment",
+                    "in": "body",
+                    "description": "instalment that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/Instalment"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "updated instalment is created",
+                        "schema": {
+                            "$ref": "#/definitions/Instalment"
+                        }
+                    }
+                }
+            }
+        },
+        "/instalment/query": {
+            "post": {
+                "tags": [
+                    "Instalment"
+                ],
+                "description": "Query from the instalment",
+                "parameters": [{
+                    "name": "instalment",
+                    "in": "body",
+                    "description": "User that we want to query",
+                    "schema": {
+                        "$ref": "#/definitions/Query"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mached List",
+                        "schema": {
+                            "$ref": "#/definitions/Instalment"
+                        }
+                    }
+                }
+            }
+        },
+        "/instalment/{id}": {
+            "get": {
+                "tags": [
+                    "Instalment"
+                ],
+                "summary": "Get instalment in system",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of instalment that we want to find",
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Instalment"
+                        }
+                    }
+                }
+            }
+        },
+        "/chitRequest": {
+            "post": {
+                "tags": [
+                    "ChitRequest"
+                ],
+                "description": "Create new chitRequest in system",
+                "parameters": [{
+                    "name": "chitRequest",
+                    "in": "body",
+                    "description": "chitRequest that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/ChitRequest"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New chit is created",
+                        "schema": {
+                            "$ref": "#/definitions/ChitRequest"
+                        }
+                    }
+                }
+            }
+        },
+        "/chitRequest/query": {
+            "post": {
+                "tags": [
+                    "ChitRequest"
+                ],
+                "description": "Create new chitRequest in system",
+                "parameters": [{
+                    "name": "chitRequest",
+                    "in": "body",
+                    "description": "query chitRequest",
+                    "schema": {
+                        "$ref": "#/definitions/Query"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Matched data",
+                        "schema": {
+                            "$ref": "#/definitions/ChitRequest"
+                        }
+                    }
+                }
+            }
+        },
+        "/chitRequest/{id}": {
+            "delete": {
+                "tags": [
+                    "ChitRequest"
+                ],
+                "summary": "Get all chits in system",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of user that we want to find",
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -141,8 +465,7 @@
                     "uniqueItems": true
                 },
                 "email": {
-                    "type": "string",
-                    "uniqueItems": true
+                    "type": "string"
                 },
                 "lastName": {
                     "type": "string"
@@ -150,6 +473,122 @@
                 "firstName": {
                     "type": "string"
                 }
+            }
+        },
+        "Instalment": {
+            "required": [
+                "amount",
+                "chitId",
+                "instalmentDate",
+                "chitDate",
+                "paidUser",
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "chitId": {
+                    "type": "string"
+                },
+                "instalmentDate": {
+                    "type": "date"
+                },
+                "chitDate": {
+                    "type": "date"
+                },
+                "instalmentNumber": {
+                    "type": "number"
+                },
+                "paidUser": {
+                    "type": "date"
+                }
+            }
+        },
+        "Chit": {
+            "required": [
+                "name",
+                "amount",
+                "tenure",
+                "chitDate",
+                "createDate",
+                "chitType",
+                "membersSize",
+                "members",
+                "instalments",
+                "createdBy",
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "tenure": {
+                    "type": "number"
+                },
+                "chitDate": {
+                    "type": "date"
+                },
+                "chitType": {
+                    "type": "string"
+                },
+                "createDate": {
+                    "type": "date"
+                },
+                "membersSize": {
+                    "type": "number"
+                },
+                "members": {
+                    "type": "array"
+                },
+                "instalments": {
+                    "type": "array"
+                },
+                "createdBy": {
+                    "type": "string"
+                }
+            }
+        },
+        "ChitRequest": {
+            "required": [
+                "chit",
+                "user",
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "chit": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "user": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Query": {
+            "required": [
+
+            ],
+            "properties": {
+
             }
         }
     }

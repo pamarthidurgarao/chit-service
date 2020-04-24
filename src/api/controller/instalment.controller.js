@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Instalment = require('../../models/instalment.model')
 const Chit = require('../../models/chit.model')
-const { update: updateChit, get: getChit } = require('./chit.controller');
+const { update: updateChit, get: getChit, query } = require('./chit.controller');
 
 
 module.exports = {
@@ -11,13 +11,13 @@ module.exports = {
         try {
             const newInstalmentEntry = await instalment.save()
             const chit = await getChit(newInstalmentEntry.chitId)
-            if (chit.instalment)
-                chit.instalment.push(newInstalmentEntry.id)
+            if (chit.instalments)
+                chit.instalments.push(newInstalmentEntry.id)
             else {
-                chit.instalment = [];
-                chit.instalment.push(newInstalmentEntry.id)
+                chit.instalments = [];
+                chit.instalments.push(newInstalmentEntry.id)
             }
-            chit.update();
+            updateChit(chit);
             return newInstalmentEntry;
         } catch (error) {
             throw error
@@ -33,6 +33,16 @@ module.exports = {
         }
     },
     get: async(id) => {
-        return Instalment.find(id);
+        return Instalment.findById(id);
+    },
+    deleteInstalment: async(id) => {
+        const instalment = await Instalment.findById(id);
+        const chit = await getChit(instalment.chitId)
+        chit.instalments = chit.instalments.filter(item => item.toString() !== id)
+        updateChit(chit);
+        return instalment.delete();
+    },
+    query: async(qur) => {
+        return Instalment.find(qur).exec();
     }
 }

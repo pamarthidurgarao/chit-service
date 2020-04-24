@@ -23,20 +23,26 @@ module.exports = {
         });
     },
     getChitsByUser: async(userId) => {
-        return Chit.find({ "members": { _id: userId } }).populate('members').exec();
+        return Chit.find({ "members": { _id: userId } }).populate('members').populate('instalments').exec();
     },
 
     update: async(updateChit) => {
         let chit = {};
-        if (updateChit.$init) {
-            chit = updateChit;
-        } else
-            chit = new Chit(updateChit);
+        if (updateChit._doc) {
+            chit = Object.assign(chit, updateChit._doc);
+        } else {
+            chit = Object.assign(chit, updateChit);
+        }
+        delete chit._id;
         try {
-            const updateEntry = chit.update();
-            return updateEntry;
+            return Chit.findByIdAndUpdate({ _id: updateChit.id }, chit, {}, function(err, chit) {
+                return chit;
+            })
         } catch (error) {
             throw error;
         }
+    },
+    query: async(qur) => {
+        return Chit.find(qur).populate('members').populate('instalments').exec();
     }
 }
