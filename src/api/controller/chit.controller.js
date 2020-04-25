@@ -23,7 +23,7 @@ module.exports = {
         });
     },
     getChitsByUser: async(userId) => {
-        return Chit.find({ "members": { _id: userId } }).populate('members').populate('instalments').exec();
+        return Chit.find({ "members": { _id: userId } }).populate('members').populate('instalments').populate('createdBy').exec();
     },
 
     update: async(updateChit) => {
@@ -43,6 +43,6 @@ module.exports = {
         }
     },
     query: async(qur) => {
-        return Chit.find(qur).populate('members').populate('instalments').exec();
+        return Chit.find(qur).populate('members').populate('instalments').populate('createdBy').exec();
     }
 }
