@@ -19,7 +19,7 @@ module.exports = {
     },
     get: async(id) => {
         return new Promise((resolve, reject) => {
-            resolve(Chit.findById(id));
+            resolve(Chit.findById(id).populate('members').populate('instalments').populate('createdBy').exec());
         });
     },
     getChitsByUser: async(userId) => {
