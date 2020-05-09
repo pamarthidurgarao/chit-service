@@ -17,5 +17,8 @@ module.exports = {
         return User.find((err, res) => {
             return res;
         });
+    },
+    query: async(qur) => {
+        return User.find(qur).exec();
     }
 }

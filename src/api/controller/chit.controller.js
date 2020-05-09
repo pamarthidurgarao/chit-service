@@ -44,5 +44,10 @@ module.exports = {
     },
     query: async(qur) => {
         return Chit.find(qur).populate('members').populate('instalments').populate('createdBy').exec();
+    },
+    deleteChit: async(id) => {
+        return Chit.findOneAndDelete({ _id: id }, function(err, s) {
+            return s;
+        });
     }
 }

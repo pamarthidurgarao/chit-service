@@ -37,7 +37,7 @@ router.put("/", async(req, res, next) => {
 
 router.post("/query", async(req, res, next) => {
     const instalments = await query(req.body)
-    res.status(201).json(instalments);
+    res.status(200).json(instalments);
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getChits, getChitsByUser, create: createChit, update: updateChit, get: getChitById, query } = require('../controller/chit.controller');
+const { getChits, getChitsByUser, create: createChit, update: updateChit, get: getChitById, query, deleteChit } = require('../controller/chit.controller');
 
 /**
  * GET request to /chit
@@ -44,7 +44,12 @@ router.put("/", async(req, res, next) => {
 
 router.post("/query", async(req, res, next) => {
     const chits = await query(req.body)
-    res.status(201).json(chits);
+    res.status(200).json(chits);
+});
+
+router.delete('/:id', async(req, res, next) => {
+    const chit = await deleteChit(req.params.id);
+    res.status(200).json(chit);
 });
 
 module.exports = router;
