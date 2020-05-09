@@ -25,8 +25,8 @@ module.exports = {
             request.delete();
     },
     requestAction: async(id, status) => {
+        const request = await ChitRequest.findById(id);
         if (status) {
-            const request = await ChitRequest.findById(id);
             const updateChit = await Chit.findById(request.chit);
             let chit = {};
             if (updateChit._doc) {
@@ -44,6 +44,6 @@ module.exports = {
                 throw error;
             }
         }
-        this.deleteRequest(id);
+        request.delete();
     }
 }
