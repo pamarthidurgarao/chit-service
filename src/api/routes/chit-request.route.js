@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { create, deleteRequest, query } = require('../controller/chit-request.controller');
+const { create, deleteRequest, query, requestAction } = require('../controller/chit-request.controller');
 /**
  * DELETE request to /:id
  */
@@ -25,4 +25,8 @@ router.post("/", async(req, res, next) => {
     res.status(201).json(request)
 });
 
+router.post('/action/:id', async(req, res, next) => {
+    await requestAction(req.params.id, req.query.status);
+    res.status(200).json({});
+});
 module.exports = router;
