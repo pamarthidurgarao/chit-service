@@ -9,6 +9,8 @@ const chitRoute = require('./api/routes/chit.route');
 const instalmentRoute = require('./api/routes/instalment.route');
 const chitRequestRoute = require('./api/routes/chit-request.route');
 
+const bidRoute = require('./api/routes/bid.route');
+
 var swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
@@ -29,5 +31,6 @@ app.use(baseUrl + '/user', userRoute);
 app.use(baseUrl + '/chit', chitRoute);
 app.use(baseUrl + '/instalment', instalmentRoute);
 app.use(baseUrl + '/chitRequest', chitRequestRoute);
+app.use(baseUrl + '/bid', bidRoute);
 
 module.exports = app;
