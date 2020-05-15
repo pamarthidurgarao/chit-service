@@ -17,4 +17,9 @@ query = async function(qur) {
     return Bid.find(qur).populate('chit').populate('bidUser').exec();
 }
 
-module.exports = { create, query }
+socketTest = async function(qur) {
+    global.io.emit(qur, 'msg');
+    console.log('socket request');
+}
+
+module.exports = { create, query, socketTest }

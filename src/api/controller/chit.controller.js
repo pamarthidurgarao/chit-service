@@ -23,7 +23,7 @@ module.exports = {
         });
     },
     getChitsByUser: async(userId) => {
-        return Chit.find({ "members": { _id: userId } }).populate('members').populate('instalments').populate('createdBy').exec();
+        return Chit.find({ "createdBy": { _id: userId }, "members": { _id: userId } }).populate('members').populate('instalments').populate('createdBy').exec();
     },
 
     update: async(updateChit) => {
