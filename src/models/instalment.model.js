@@ -11,8 +11,8 @@ const instalmentSchema = mongoose.Schema({
   users: [
     {
       user: { type: Schema.Types.ObjectId, ref: "User" },
-      paymentStatus: { type: String },
-      paymentDate: { type: Date },
+      paymentStatus: { type: String, required: false },
+      paymentDate: { type: Date, required: false },
     },
   ],
 });
