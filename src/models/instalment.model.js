@@ -7,7 +7,7 @@ const instalmentSchema = mongoose.Schema({
   chitId: { type: mongoose.Schema.Types.ObjectId, required: true },
   instalmentDate: { type: Date, required: true },
   chitDate: { type: Date, required: true },
-  instalmentNumber: { type: Number, required: true },
+  instalmentNumber: { type: Number, required: false },
   users: [
     {
       user: { type: Schema.Types.ObjectId, ref: "User" },
