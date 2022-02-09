@@ -8,10 +8,9 @@ const instalmentSchema = mongoose.Schema({
   instalmentDate: { type: Date, required: true },
   chitDate: { type: Date, required: true },
   instalmentNumber: { type: Number, required: false },
-  users: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  status: [
+  users: [
     {
-      user: { type: Schema.Types.ObjectId },
+      user: { type: Schema.Types.ObjectId, ref: "User" },
       paymentStatus: { type: String, required: false },
       paymentDate: { type: Date, required: false },
     },
