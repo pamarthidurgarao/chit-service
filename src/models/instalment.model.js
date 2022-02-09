@@ -8,6 +8,7 @@ const instalmentSchema = mongoose.Schema({
   instalmentDate: { type: Date, required: true },
   chitDate: { type: Date, required: true },
   instalmentNumber: { type: Number, required: false },
+  bidUser: { type: Schema.Types.ObjectId, ref: "User" },
   users: [
     {
       user: { type: Schema.Types.ObjectId, ref: "User" },

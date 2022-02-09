@@ -37,7 +37,10 @@ module.exports = {
     }
   },
   get: async (id) => {
-    return Instalment.findById(id).populate("users.user").exec();
+    return Instalment.findById(id)
+      .populate("users.user")
+      .populate("bidUser")
+      .exec();
   },
   deleteInstalment: async (id) => {
     const instalment = await Instalment.findById(id);
@@ -49,6 +52,9 @@ module.exports = {
     return instalment.delete();
   },
   query: async (qur) => {
-    return Instalment.find(qur).populate("users.user").exec();
+    return Instalment.find(qur)
+      .populate("users.user")
+      .populate("bidUser")
+      .exec();
   },
 };
